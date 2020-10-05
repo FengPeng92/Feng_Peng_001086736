@@ -200,14 +200,40 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        account.setRoutingNumber(txtRoutingNumber.getText());
-        account.setAccountNumber(txtAccountNumber.getText());
-        account.setBankName(txtBankName.getText());
+        try {
+            int routing = Integer.parseInt(txtRoutingNumber.getText());
+            int accounting = Integer.parseInt(txtAccountNumber.getText());
+            String bankName = txtBankName.getText();
+            
+            boolean isNum = true;
+            for (int i = 0; i < bankName.length(); i++) {
+                if (!Character.isDigit(bankName.charAt(i))) {
+                    isNum = false;
+                }
+            }
+            if (isNum) {
+                    JOptionPane.showMessageDialog(null, "Bank Name cannot be number", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+                
+                    if (txtRoutingNumber.getText().equals("") || txtAccountNumber.getText().equals("")  || txtBankName.getText().equals("")) {
+                        JOptionPane.showMessageDialog(null, "Please fill all imformation", "Warning", JOptionPane.WARNING_MESSAGE);
+                    } else {                      
+                        account.setRoutingNumber(txtRoutingNumber.getText());
+                        account.setAccountNumber(txtAccountNumber.getText());
+                        account.setBankName(bankName);
+            
+                        btnSave.setEnabled(false);
+                        btnUpdate.setEnabled(true);
+
+                        JOptionPane.showMessageDialog(null, "Account updated sucessfully!");
+                    }
+                
+            }
+
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Please fill validate value", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
         
-        btnSave.setEnabled(false);
-        btnUpdate.setEnabled(true);
-        
-        JOptionPane.showMessageDialog(null, "Account updated sucessfully!");
     }//GEN-LAST:event_btnSaveActionPerformed
 
 

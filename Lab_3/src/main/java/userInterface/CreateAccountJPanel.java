@@ -147,18 +147,48 @@ public class CreateAccountJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        String routingNumber = txtRoutingNumber.getText();
-        String accountNumber = txtAccountNumber.getText();
-        String bankName = txtBankName.getText();
-        int balance = Integer.parseInt(txtBalance.getText());
+        try {
+            String routingNumber = txtRoutingNumber.getText();
+            String accountNumber = txtAccountNumber.getText();
+            String bankName = txtBankName.getText();
+            int balance = Integer.parseInt(txtBalance.getText());
         
-        Account account = accountDirectory.addAccount();
-        account.setRoutingNumber(routingNumber);
-        account.setAccountNumber(accountNumber);
-        account.setBankName(bankName);
-        account.setBalance(balance);
+            if (routingNumber.equals("") || accountNumber.equals("")  || bankName.equals("")  || txtBalance.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Please fill all imformation", "Warning", JOptionPane.WARNING_MESSAGE);
+            } else {
+                int rounting = Integer.parseInt(routingNumber);
+                int accounting = Integer.parseInt(accountNumber);
+                
+                boolean isNum = true;
+                for (int i = 0; i < bankName.length(); i++) {
+                    if (!Character.isDigit(bankName.charAt(i))) {
+                        isNum = false;
+                    }
+                }
+                if (isNum) {
+                    JOptionPane.showMessageDialog(null, "Bank Name cannot be number", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    
+                    Account account = accountDirectory.addAccount();
+                    account.setRoutingNumber(routingNumber);
+                    account.setAccountNumber(accountNumber);
+                    account.setBankName(bankName);
+                    account.setBalance(balance);
         
-        JOptionPane.showMessageDialog(null, "Account successfully created!");
+                    JOptionPane.showMessageDialog(null, "Account successfully created!");
+                    
+                }
+
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Please fill validate value", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        
+        
+        
+        
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
