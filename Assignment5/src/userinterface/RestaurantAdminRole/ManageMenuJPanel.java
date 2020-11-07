@@ -49,8 +49,8 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         for (MenuItem menu : restaurant.getMenus()) {
             Object[] row = new Object[3];
             row[0] = menu.getDishName();
-            row[1] = menu.getDescription();
-            row[2] = menu.getPrice();
+            row[1] = menu.getPrice();
+            row[2] = menu.getDescription();
             dtm.addRow(row);
         }
     }

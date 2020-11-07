@@ -203,7 +203,7 @@ public class ViewDeliveryManDetailJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         txtUsername.setEnabled(true);
         txtName.setEnabled(true);
-        txtName.setEnabled(true);
+        txtPassword.setEnabled(true);
         txtPhone.setEnabled(true);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -226,7 +226,7 @@ public class ViewDeliveryManDetailJPanel extends javax.swing.JPanel {
                 curAcc.setPassword(password);
                 txtUsername.setEnabled(false);
                 txtName.setEnabled(false);
-                txtName.setEnabled(false);
+                txtPassword.setEnabled(true);
                 txtPhone.setEnabled(false);
 
             }

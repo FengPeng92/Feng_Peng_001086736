@@ -5,6 +5,14 @@
  */
 package userinterface.RestaurantAdminRole;
 
+import Business.EcoSystem;
+import Business.Restaurant.Order;
+import Business.Restaurant.Restaurant;
+import Business.UserAccount.UserAccount;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author fengpeng
@@ -14,8 +22,38 @@ public class ViewResOrderedHistoryJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewResOrderedHistoryJPanel
      */
+    private JPanel userProcessContainer;
+    private EcoSystem ecosystem;
+    private Restaurant restaurant;
+    private UserAccount account;
     public ViewResOrderedHistoryJPanel() {
         initComponents();
+    }
+
+    ViewResOrderedHistoryJPanel(JPanel userProcessContainer, EcoSystem ecosystem, Restaurant restaurant, UserAccount account) {
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
+        this.account = account;
+        this.restaurant = restaurant;
+        initComponents();
+        txtRes.setText(restaurant.getResName());
+        populate();
+    }
+    
+    public void populate() {
+        DefaultTableModel dtm = (DefaultTableModel) tableOrderedHistory.getModel();
+        dtm.setRowCount(0);
+        
+        for (Order o : restaurant.getOrders()) {
+            Object[] row = new Object[6];
+            row[0] = o.getOrderId();
+            row[1] = o.getCusName();
+            row[2] = o.getOrderItem().getItem().getDishName();
+            row[3] = o.getDeliveryMan();
+            row[4] = o.getStatus();
+            row[5] = o.getCommnet();
+            dtm.addRow(row);
+        }
     }
 
     /**
@@ -57,6 +95,11 @@ public class ViewResOrderedHistoryJPanel extends javax.swing.JPanel {
         jLabel2.setText("Ordered History");
 
         btnView.setText("View Comment");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         txtAreaComment.setColumns(20);
         txtAreaComment.setRows(5);
@@ -66,6 +109,8 @@ public class ViewResOrderedHistoryJPanel extends javax.swing.JPanel {
         jLabel3.setText("Comments: ");
 
         jLabel4.setText("Restaurant: ");
+
+        txtRes.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -113,6 +158,16 @@ public class ViewResOrderedHistoryJPanel extends javax.swing.JPanel {
                 .addContainerGap(108, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableOrderedHistory.getSelectedRow();
+        if (selectedRow >= 0) {
+            txtAreaComment.setText((String) tableOrderedHistory.getValueAt(selectedRow, 5));
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row.");
+        }
+    }//GEN-LAST:event_btnViewActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -200,6 +200,11 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         });
 
         btnViewOrderHis.setText("View Ordered History");
+        btnViewOrderHis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewOrderHisActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -354,6 +359,14 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
             
         }
     }//GEN-LAST:event_btnAssignActionPerformed
+
+    private void btnViewOrderHisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrderHisActionPerformed
+        // TODO add your handling code here:
+        ViewResOrderedHistoryJPanel newDishJPanel = new ViewResOrderedHistoryJPanel(userProcessContainer, ecosystem, restaurant, account);
+        userProcessContainer.add("ViewResOrderedHistoryJPanel",newDishJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewOrderHisActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

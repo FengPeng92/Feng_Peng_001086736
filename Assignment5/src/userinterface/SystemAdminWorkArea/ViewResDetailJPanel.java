@@ -197,7 +197,7 @@ public class ViewResDetailJPanel extends javax.swing.JPanel {
         txtManager.setEnabled(true);
         txtAddress.setEnabled(true);
         txtPhone.setEnabled(true);
-        
+        txtPassword.setEnabled(true);
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -240,16 +240,18 @@ public class ViewResDetailJPanel extends javax.swing.JPanel {
             restaurant.setPhone(phone);
             userAccount.setUsername(manager);
             userAccount.setPassword(password);
+            txtRes.setEnabled(false);
+            txtManager.setEnabled(false);
+            txtAddress.setEnabled(false);
+            txtPhone.setEnabled(false);
+            txtPassword.setEnabled(false);
             
 
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, "Phone number should be integer");
         }
         
-        txtRes.setEnabled(false);
-        txtManager.setEnabled(false);
-        txtAddress.setEnabled(false);
-        txtPhone.setEnabled(false);
+        
     }//GEN-LAST:event_btnSaveActionPerformed
 
 

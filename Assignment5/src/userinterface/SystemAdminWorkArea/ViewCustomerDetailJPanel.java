@@ -200,8 +200,8 @@ public class ViewCustomerDetailJPanel extends javax.swing.JPanel {
                 curAcc.setPassword(password);
                 txtUsername.setEnabled(false);
                 txtName.setEnabled(false);
-                txtPassword.setEnabled(true);
-                txtPhone.setEnabled(true);
+                txtPassword.setEnabled(false);
+                txtPhone.setEnabled(false);
 
             }
         } catch(Exception e) {
